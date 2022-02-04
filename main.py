@@ -22,7 +22,7 @@ def get_prefix(client, message): ##first we define get_prefix
 client = commands.Bot( command_prefix= (get_prefix), intents=intents, presences = True, members = True, guilds=True, case_insensitive=True, allowed_mentions = discord.AllowedMentions(everyone=False))
 
 
-client.event
+@client.event
 async def on_guild_join(guild): #when the bot joins the guild
     with open('prefixes.json', 'r') as f: #read the prefix.json file
         prefixes = json.load(f) #load the json file
