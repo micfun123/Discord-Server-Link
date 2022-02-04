@@ -4,6 +4,7 @@ import os
 from os import listdir
 from os.path import isfile, join
 import json
+import dotenv	
 
 intents = discord.Intents.all()
 intents.presences = True
@@ -28,7 +29,7 @@ async def on_guild_join(guild): #when the bot joins the guild
 
     prefixes[str(guild.id)] = '.'#default prefix
 
-    with open('prefixes.json', 'w') as f: #write in the prefix.json "message.guild.id": "bl!"
+    with open('prefixes.json', 'w') as f: #write in the prefix.json "message.guild.id": "."
         json.dump(prefixes, f, indent=4) #the indent is to make everything look a bit neater
 
 @client.event
@@ -66,15 +67,11 @@ async def on_ready():
     # Setting `Playing ` status
     print("we have powered on, I an alive.")
     await update_activity(client)
-    channel = client.get_channel(938986974419767317)
-    await channel.send("Online")
 
 
 
 
-    
 
-TOKEN = os.getenv("DISCORD_TOKEN")
 
 def start_bot(client):
     lst = [f for f in listdir("cogs/") if isfile(join("cogs/", f))]
@@ -86,7 +83,7 @@ def start_bot(client):
             print(f"Loaded {cogs}")
 
         print("\nAll Cogs Loaded\n===============\nLogging into Discord...")
-        client.run(TOKEN) # Token do not change it here. Change it in the .env if you do not have a .env make a file and put DISCORD_TOKEN=Token 
+        client.run("OTM4OTg2MzEzMDgyODkyMjg5.YfyRJg.Ziq15KQgHvBpEwQmE-fglvFC1go") # Token do not change it here. Change it in the .env if you do not have a .env make a file and put DISCORD_TOKEN=Token 
 
     except Exception as e:
         print(
