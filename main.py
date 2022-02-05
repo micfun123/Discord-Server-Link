@@ -4,7 +4,8 @@ import os
 from os import listdir
 from os.path import isfile, join
 import json
-import dotenv	
+import dotenv
+from pyparsing import TokenConverter	
 
 intents = discord.Intents.all()
 intents.presences = True
@@ -68,10 +69,7 @@ async def on_ready():
     print("we have powered on, I an alive.")
     await update_activity(client)
 
-
-
-
-
+Tocken = os.getenv('TOKEN')
 
 def start_bot(client):
     lst = [f for f in listdir("cogs/") if isfile(join("cogs/", f))]
@@ -83,7 +81,7 @@ def start_bot(client):
             print(f"Loaded {cogs}")
 
         print("\nAll Cogs Loaded\n===============\nLogging into Discord...")
-        client.run("OTM4OTg2MzEzMDgyODkyMjg5.YfyRJg.Ziq15KQgHvBpEwQmE-fglvFC1go") # Token do not change it here. Change it in the .env if you do not have a .env make a file and put DISCORD_TOKEN=Token 
+        client.run(Tocken) # Token do not change it here. Change it in the .env if you do not have a .env make a file and put DISCORD_TOKEN=Token 
 
     except Exception as e:
         print(
